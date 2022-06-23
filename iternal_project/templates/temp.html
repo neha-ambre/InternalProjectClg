@@ -1,0 +1,2392 @@
+{%extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{%block body%}
+{% load static %}
+{% load crispy_forms_tags %}
+<link rel="stylesheet" href="../static/css/formstyle.css">
+
+<h3 style="font-family:monospace;font-size: xx-large;">
+    <marquee direction="right">--WELCOME--</marquee>
+</h3>
+<div class="container outer justify-content-center">
+    <form method="POST" action="saveForm/">
+        {% csrf_token %}
+            <h3 class="my-3 text-center mx-0 px-0">Patient Information</h3>
+
+        <div id="accordion" class="d-block">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#personalDetails" aria-expanded="true" aria-controls="collapseOne">
+                    Personal Details
+                  </button>
+                </h5>
+              </div>
+              
+              <div id="personalDetails" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <!-- Personl Details section -->
+                    <div class="container" style="margin-bottom:50px">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>{{ form.name.label_tag }}</td>
+                                <td>
+                                  {{ form.name.errors }}
+                                  {{ form.name }}
+                                </td>
+                              </tr>
+            
+                              <tr>
+                                <td>{{ form.address.label_tag }}</td>
+                                <td>
+                                  {{ form.address.errors }}
+                                  {{ form.address }}
+                                </td>
+                              </tr>
+            
+                              <tr>
+                                <td>{{ form.gender.label_tag }}</td>
+                                <td>
+                                  {{ form.gender.errors }}
+                                  {{ form.gender }}
+                                </td>
+                              </tr>
+            
+                              <tr>
+                                <td>{{ form.refferedby.label_tag }}</td>
+                                <td>
+                                  {{ form.refferedby.errors }}
+                                  {{ form.refferedby }}
+                                </td>
+                              </tr>
+            
+                        </table>
+                    </div>                
+                </div>
+              </div>
+            </div>
+
+            <!-- Birth History -->
+            <div class="card"> 
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                   <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#birthHistory" aria-expanded="false" aria-controls="collapseTwo">
+                    Birth History
+                  </button>
+                </h5>
+              </div>
+              <div id="birthHistory" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                        <div class="container" style="margin-bottom:50px">
+                            <table class="table table-borderless">
+                                <tr>
+                                <td>{{ form.address.label_tag }}</td>
+                                <td>
+                                  {{ form.address.errors }}
+                                  {{ form.address }}
+                                </td>
+                              </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="birth-weight">Birth Weight</label>
+                                    </td>
+                                    <td>
+                                            <input type="number" class="form-control" placeholder="in kgs" id="birth-weight" style="width: 150px;">                        
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="fullterm" name="del" type="radio" class="custom-control-input" checked="" />
+                                            <label class="custom-control-label" for="credit">Fullterm</label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="preterm" name="del" type="radio" class="custom-control-input" checked="" />
+                                            <label class="custom-control-label" for="credit">Preterm</label>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-4">
+                                            Delivery
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="container d-inline-block">
+                                            <div class="custom-control custom-radio mx-3">
+                                                <input id="normal-delivery" name="delivery" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Normal</label>
+                                            </div>
+                                            <div class="custom-control custom-radio mx-3">
+                                                <input id="lscs-delivery" name="delivery" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">LSCS</label>
+                                            </div>
+                                            <div class="custom-control custom-radio mx-3">
+                                                <input id="foreceps-delivery" name="delivery" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Foreceps</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Consanguinity
+                                    </td>
+                                    <td>
+                                        <div class="container d-block">
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="present" name="consanguinity" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Present</label>
+                                            </div>
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="absent" name="consanguinity" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Absent</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Perinatal Events
+                                    </td>
+                                    <td>
+                                       <div class="container outercont d-block">
+                                        <div class="container1 d-block">
+                                            <div class="container11">
+                                                <div class="btn-group" data-toggle="buttons" id="btn-group-id">
+                                                        <input id="perinatal-yes" type="radio" name="perinatal"> 
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                </div>
+                                                <div class="custom-control custom-radio d-inline mx-3">
+                                                    <input id="perinatal-no" name="perinatal" type="radio" class="custom-control-input"
+                                                        checked="" />
+                                                    <label class="custom-control-label" for="credit">No</label>
+                                                </div>
+                                            </div>
+                                            <div class="container12">
+                                                <select class="form-select" id="perinatal-events" aria-label="Default select example" style="width:150px">
+                                                    <option selected>Details</option>
+                                                    <option value="1">Birth Asphyxia</option>
+                                                    <option value="2">Perinatal Depression</option>
+                                                    <option value="3">Meconium Aspiration Syndrom</option>
+                                                    <option value="4">Seizures</option>
+                                                    <option value="5">Hypoglycemia</option>
+                                                    <option value="6">Jaundice</option>
+                                                    <option value="7">Neonatal Apnoea</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="container2">
+                                        </div>
+                                       </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Treatment Received
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <select class="form-select" id="treatment-received" aria-label="Default select example" style="width:150px">
+                                                <option selected>Treatment</option>
+                                                <option value="1">Intubation at birth</option>
+                                                <option value="2">Required oxygen support</option>
+                                                <option value="3">Ventilator</option>
+                                                <option value="4">Required surfactant</option>
+                                                <option value="5">Ionotropic support</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Required NICU stay
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" data-toggle="buttons" id="btn-group-id">
+                                            <label class="btn">
+                                                <input id="nicu-stay-yes" type="radio" name="nicu-stay" value="Label">Yes
+                                                <input type="text" name="other_reason" placeholder="Duration" />
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="nicu-stay-no" name="nicu-stay" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">No</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                </div>
+              </div>
+            </div>  
+
+            <!-- Concerns -->
+             <!-- <div class="card"> 
+              <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                   <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#concerns" aria-expanded="false" aria-controls="collapseThree">
+                    Concerns
+                  </button>
+                </h5>
+              </div>
+              <div id="concerns" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="container" style="margin-bottom:50px">
+                        <table class="table table-borderless">
+                            <tr>
+                                <h4 class="mb-3 my-2">Concerns</h4>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-3 my-2">Neurology</h5>
+                                </td>
+
+                                <td>
+                                    <div class="container d-inline-flex">
+                                        <div class="container1 mx-2">
+                                            <div class="form-check my-1 d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check d-flex-label" for="flexCheckDefault">
+                                                    Weakness in lower limbs
+                                                </label>
+                                            </div>
+                                            <div class="form-check my-1 d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Seizures
+                                                </label>
+                                            </div>
+                                            <div class="form-check my-1 d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Abnormal movements
+                                                </label>
+                                            </div>
+                                            <div class="form-check my-1 d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Breath holding spells
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="container2 mx-2">
+                                            <div class="form-check my-1 d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Drooling of saliva
+                                                </label>
+                                            </div>
+                                            <div class="form-check my-1 d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Regression of milestones
+                                                </label>
+                                            </div>
+                                            <div class="form-check my-1 d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Episode of unconsciousness
+                                                </label>
+                                            </div>
+                                            <div class="form-check my-1 d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Reapeated episodes of headache
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5 class="mb-3 my-2">Developement</h5>
+                                </td>
+                                <td>
+                                    <div class="container mx-2">
+                                        <div class="form-check my-1 d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check d-flex-label" for="flexCheckDefault">
+                                                Delayed motor development
+                                            </label>
+                                        </div>
+                                        <div class="form-check my-1 d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                Delay in sensory development
+                                            </label>
+                                        </div>
+                                        <div class="form-check my-1 d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                Delayed speech
+                                            </label>
+                                        </div>
+                                        <div class="form-check my-1 d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                Delayed social development
+                                            </label>
+                                        </div>
+                                        <div class="form-check my-1 d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                Developmental Surveillance
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Learning</h5>
+                                </td>
+                                <td>
+                                    <div class="container d-inline-flex mx-2">
+                                        <div class="container1">
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Reluctant to study
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Poor school performance
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Weak in studies
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Lack of interest in studies
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Dropping grades
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Not learning well
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Difficulty in learning
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Difficult " to teach"
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="container2">
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Leaves home work incomplete
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Can not identify alphabets
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    b d, 6 9 confusion
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Does not like reading
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Slow effortful reading
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Makes many mistakes while reading
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Slow writing speed
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Poor handwriting
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="container3">
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Good at oral answers but poor at writing
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Leaves answersheets blank
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Leaves classwork incomplete
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Hyperactivity
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Attention deficit
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <input class="form-check d-flex-input" type="checkbox" value=""
+                                                    id="flexCheckChecked">
+                                                <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                    Lack of concentration
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5>Behavior</h5>
+                                </td>
+                                <td>
+                                    <div class="container my-2 mx-2">
+                                        <div class="form-check d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                Stubborn Behaviors
+                                            </label>
+                                        </div>
+                                        <div class="form-check d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                Short Tempered
+                                            </label>
+                                        </div>
+                                        <div class="form-check d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                Rule breaking behaviors
+                                            </label>
+                                        </div>
+                                        <div class="form-check d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                Difficult behaviorsg
+                                            </label>
+                                        </div>
+                                        <div class="form-check d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                Socially inappropriate behaviors
+                                            </label>
+                                        </div>
+                                        <div class="form-check d-flex">
+                                            <input class="form-check d-flex-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check d-flex-label" for="flexCheckChecked">
+                                                Can not make friends
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+              </div>
+            </div>  -->
+
+             <!-- Developement History -->
+            <!-- <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#developementHistory" aria-expanded="false" aria-controls="collapseThree">
+                        Developement History
+                    </button>
+                  </h5>
+                </div>
+                <div id="developementHistory" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                      
+                    <div class="container" style="margin-bottom:50px">
+                        <table class="table table-borderless">
+                            <tr>
+                                <th>
+                                    <h4 class="mb-3">Developement History</h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td> <label for="firstName">Motor Developement</label></td>
+                                <td>
+                                    <div class="container d-flex">
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="motor-dev-normal" name="motor-dev" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">Normal</label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="motor-dev-mar-delay" name="motor-dev" type="radio"
+                                                class="custom-control-input" checked="" />
+                                            <label class="custom-control-label" for="credit">Marginal Delay</label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="motor-dev-delay" name="motor-dev" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">Delayed</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="socialsimle">Social Smile</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" placeholder="months">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="neckholding">Neck Holding</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" placeholder="months">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="rollover">Roll Over</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" placeholder="months">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="situpown">Sitting up on own</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" placeholder="months">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="stand">Standing with/without support</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" placeholder="months">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="walking">Independent Walking</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" placeholder="months">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="speech">Speech Developement</label></td>
+                                <td>
+                                    <div class="container d-flex">
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="speech-dev-normal" name="speech-dev" type="radio"
+                                                class="custom-control-input" checked="" />
+                                            <label class="custom-control-label" for="credit">Normal</label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="speech-dev-mar-delay" name="speech-dev" type="radio"
+                                                class="custom-control-input" checked="" />
+                                            <label class="custom-control-label" for="credit">Marginal Delay</label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="speech-dev-delay" name="speech-dev" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">Delayed</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="words">Single words at</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" placeholder="months">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="sentences">Full sentences at</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" placeholder="months">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="callingname">Response to calling name</label>
+                                </td>
+                                <td>
+                                    <div class="container d-flex">
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="res-call-yes" name="res-name-call" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="res-call-no" name="res-name-call" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">No</label>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="instructions">Response to instructions</label>
+                                </td>
+                                <td>
+                                    <div class="container d-flex">
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="res-inst-yes" name="res-inst-call" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="res-inst-no" name="res-inst-call" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">No</label>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="repeatswords">Repeats spoken words</label>
+                                </td>
+                                <td>
+                                    <div class="container d-flex">
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="rep-words-yes" name="rep-words" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="rep-words-no" name="rep-words" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">No</label>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="callingname">No communication loops</label>
+                                </td>
+                                <td>
+                                    <div class="container d-flex">
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="comm-loop-yes" name="comm-loop" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio d-inline mx-3">
+                                            <input id="comm-loop-no" name="comm-loop" type="radio" class="custom-control-input"
+                                                checked="" />
+                                            <label class="custom-control-label" for="credit">No</label>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>       
+                  </div>
+                </div>
+            </div> -->
+
+           <!-- Past History -->
+            <!-- <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#pastHistory" aria-expanded="false" aria-controls="collapseThree">
+                        Past History
+                    </button>
+                  </h5>
+                </div>
+                <div id="pastHistory" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                        
+                        <div class="container" style="margin-bottom:50px">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th>
+                                        <h4 class="mb-3">Past History</h4>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="past-history">Past History Significance</label>
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="past-his-sig" name="past-his" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Significant</label>
+                                            </div>
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="past-his-nosig" name="past-his" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Not Significant</label>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="firstName">Clinical History Significance</label>
+                                    </td>
+                                    <td>
+                                        <input type="textarea" class="form-control" id="clinical-significance"
+                                            placeholder="Enter clinical history details"  />
+                                    </td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="callingname">H/O Surgery</label>
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="ho-surg-yes" name="ho-surg" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Present</label>
+                                            </div>
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="ho-surg-no" name="ho-surg" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Absent</label>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="callingname">H/O Hospitalization</label>
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="ho-hosp-yes" name="ho-hosp" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Present</label>
+                                            </div>
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="ho-hosp-no" name="ho-hosp" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Absent</label>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="callingname">H/O Previous Treatment</label>
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="ho-treatment-yes" name="ho-treatment" type="radio"
+                                                    class="custom-control-input" checked="" />
+                                                <label class="custom-control-label" for="credit">Present</label>
+                                            </div>
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="ho-treatment-no" name="ho-treatment" type="radio"
+                                                    class="custom-control-input" checked="" />
+                                                <label class="custom-control-label" for="credit">Absent</label>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>      
+                  </div>
+                </div>
+            </div> -->
+
+            <!-- Behavior and personal history -->
+            <!-- <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#behaviorHistory" aria-expanded="false" aria-controls="collapseThree">
+                        Behavior and personal history
+                    </button>
+                  </h5>
+                </div>
+                <div id="behaviorHistory" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                               
+                                <div class="container" style="margin-bottom:50px">
+                                    <table class="table table-borderless">
+                                        <tr>
+                                            <th>
+                                                <h4 class="mb-3">Personal and Behavior History</h4>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <h5 class="mb-3">Developement</h5>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="dependent-on-mother">Dependant on mother for daily self care activities</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="dependent-yes" name="mother-depend" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="dependent-no" name="mother-depend" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="toilet-training">Toilet trained</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="toilet-trained-yes" name="toilet-trained" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="toilet-trained-no" name="toilet-trained" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="needindic">No need indication</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="need-indication-yes" name="need-indication" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="need-indication-no" name="need-indication" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="playfulornot">Playful with children</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="playful-yes" name="playful" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="playful-no" name="playful" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="hyperactiveornot">Hyperactive & restless</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="hyperactive-yes" name="hyperactive" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="hyperactive-no" name="hyperactive" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="socialornot">Unsocial behaviors</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="unsocial-behavior-yes" name="unsocial-behavior" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="unsocial-behavior-no" name="unsocial-behavior" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="socialornot">Peergroup behaviors</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="peergroup-behavior-yes" name="peergroup-behavior" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Normal</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="peergroup-behavior-no" name="unsocial-behavior" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Abnormal</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>
+                                                <h5 class="mb-3">Learning</h5>
+                                            </th>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="good in studies">Good in studies</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="good-in-studies-yes" name="good-studies" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="good-in-studies-no" name="good-studies" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="misses school often">Misses school often</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="misses-school-often-yes" name="misses-school" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="misses-school-often-no" name="misses-school" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="dislikes school">Dislikes school</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="dislikes-school-yes" name="dislikes-school" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="dislikes-school-no" name="dislikes-school" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="playfulornot">Reluctant to go to school</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="reluctant-to-go-to-school-yes" name="reluctant-to-go-to-school" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="reluctant-to-go-to-school-no" name="reluctant-to-go-to-school" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>
+                                                <h5 class="mb-3">Behavior</h5>
+                                            </th>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="good in studies">Independent in daily activities</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="independent-in-daily-activities-yes" name="independent-in-daily-activities"
+                                                            type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="independent-in-daily-activities-no" name="independent-in-daily-activities"
+                                                            type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="clumsy-looses-things-often ">Clumsy, looses things often </label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="clumsy-looses-things-often-yes" name="clumsy-looses-things-often"
+                                                            type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="clumsy-looses-things-often-no" name="clumsy-looses-things-often" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="social-behavior">Social behavior</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="social-behavior-yes" name="social-behavior" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Appropriate</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="social-behavior-no" name="social-behavior" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Inappropriate</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="submissive-and-shy">Submissive and shy</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="submissive-and-shy-yes" name="submissive-and-shy" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="submissive-and-shy-no" name="submissive-and-shy" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="frequent-temper-tantrums">Frequent temper tantrums</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="frequent-temper-tantrums-yes" name="frequent-temper-tantrums" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="frequent-temper-tantrums-no" name="frequent-temper-tantrums" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="careless-casual-attitude">Careless, casual attitude </label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="careless-casual-attitude-yes" name="careless-casual-attitude" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="careless-casual-attitude-no" name="careless-casual-attitude" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="friendly-social">Friendly & social</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="friendly-social-yes" name="friendly-social" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="friendly-social-no" name="friendly-social" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="poor-confidence">Poor confidence</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="poor-confidence-yes" name="poor-confidence" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="poor-confidence-no" name="poor-confidence" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="sincere">Sincere</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="sincere-yes" name="sincere" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="sincere-no" name="sincere" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="obedient">Obedient</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="obedient-yes" name="obedient" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="obedient-no" name="obedient" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="helpful-at-home">Helpful at home</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="helpful-at-home-yes" name="helpful-at-home" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="helpful-at-home-no" name="helpful-at-home" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="hyperactive-restless">Hyperactive & restless</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="hyperactive-restless-yes" name="hyperactive-restless" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="hyperactive-restless-no" name="hyperactive-restless" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="neatness-in-work">Neatness in work</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="neatness-in-work-yes" name="neatness-in-work" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="neatness-in-work-no" name="neatness-in-work" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="odd-obsessive-habits">Odd and obsessive habits</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="odd-obsessive-habits-yes" name="odd-obsessive-habits" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="odd-obsessive-habits-no" name="odd-obsessive-habits" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="moody-behaviors">Moody behaviors</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="moody-behaviors-yes" name="moody-behaviors" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="moody-behaviors-no" name="moody-behaviors" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="moody-behaviors">Friends</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="friends-many" name="friends" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">Many</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="friends-few" name="friends" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">Few</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="tvviewing">TV viewing</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="tv-viewing-exc" name="tv-viewing" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">Excessive</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="tv-viewing-lim" name="tv-viewing" type="radio" class="custom-control-input"
+                                                            checked="" />
+                                                        <label class="custom-control-label" for="credit">Limited</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="dietary-habits">Dietary habits</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="dietary-habit-healthy" name="dietary-habits" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Healthy</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="dietary-habits-poor" name="dietary-habits" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Poor</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="sleep-habits">Sleep habits</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="sleep-habit-healthy" name="sleep-habits" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Healthy</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="sleep-habits-poor" name="sleep-habits" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Poor</label>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="parenting-style">Parenting style</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="parenting-style-authoriterian" name="parenting-style" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Authoriterian</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="parenting-style-authoritative" name="parenting-style" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Authoritative</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="parenting-style-permissive" name="parenting-style" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Permissive</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="parenting-style-mixed" name="parenting-style" type="radio"
+                                                            class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Mixed</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                  </div>
+                </div>
+            </div> -->
+
+            <!-- Academic history -->
+            <!-- <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#academicHistory" aria-expanded="false" aria-controls="collapseThree">
+                        Academic history
+                    </button>
+                  </h5>
+                </div>
+                <div id="academicHistory" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                         
+                        <div class="container" style="margin-bottom:50px">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th>
+                                        <h4 class="mb-3">Academic History</h4>
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="school-name">Present school name</label>
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <input type="textarea" class="form-control" id="schoolName" placeholder="Enter school name"
+                                                />
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Board
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <select class="form-select" aria-label="Default select example" style="width:150px">
+                                                <option selected>Board</option>
+                                                <option value="1">CBSE</option>
+                                                <option value="2">State</option>
+                                                <option value="3">ICSE</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Medium
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <select class="form-select" aria-label="Default select example" style="width:150px">
+                                                <option selected>Medium</option>
+                                                <option value="1">English</option>
+                                                <option value="2">Marathi</option>
+                                                <option value="3">Semi english</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="school-name">Playgroup & Nursery</label>
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <input type="textarea" class="form-control" id="Playgroup-Nursery"
+                                                placeholder="comments if any"  />
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="LKG-UKG">LKG & UKG</label>
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <input type="textarea" class="form-control" id="LKG-UKG" placeholder="comments if any"
+                                                />
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="present-grade">1st to present grade</label>
+                                    </td>
+                                    <td>
+                                        <div class="container">
+                                            <input type="textarea" class="form-control" id="present-grade" placeholder="comments if any"
+                                                />
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="concerns-first-noticed">Concerns first noticed in </label>
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <input type="number" class="form-control" placeholder="...grade">
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="attendance">Attendance at school</label>
+                                    </td>
+                                    <td>
+                                        <div class="container d-flex">
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="attendance-average" name="attendance" type="radio"
+                                                    class="custom-control-input" checked="" />
+                                                <label class="custom-control-label" for="credit">Average</label>
+                                            </div>
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="attendance-misses" name="attendance" type="radio"
+                                                    class="custom-control-input" checked="" />
+                                                <label class="custom-control-label" for="credit">Misses school often</label>
+                                            </div>
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="attendance-poor" name="attendance" type="radio" class="custom-control-input"
+                                                    checked="" />
+                                                <label class="custom-control-label" for="credit">Poor</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="liked-subjects">Liked subjects</label>
+                                    </td>
+                                    <td><input type="text" class="form-control" id="liked-subjects" placeholder="" value="" 
+                                            style="width: 150px;"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="not-liked-subjects">Not liked subjects</label>
+                                    </td>
+                                    <td><input type="text" class="form-control" id="not-liked-subjects" placeholder="" value=""
+                                            style="width: 150px;"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="school-concerns">Present school concerns</label>
+                                    </td>
+                                    <td>
+                                        <div class="container d-inline-flex">
+                                            <div class="containersub1">
+                                                <div class="custom-control custom-radio d-inline mx-3">
+                                                    <input id="school-concerns-yes" name="school-concerns" type="radio"
+                                                        class="custom-control-input" checked="" />
+                                                    <label class="custom-control-label" for="credit">Yes</label>
+                                                </div>
+                                            </div>
+                                            <div class="containersub2">
+                                                <div class="form-check my-1 d-flex">
+                                                    <input class="form-check d-flex-input" type="checkbox" value="" id="disturbs">
+                                                    <label class="form-check d-flex-label" for="flexCheckDefault">
+                                                        Disturbs class
+                                                    </label>
+                                                </div>
+                                                <div class="form-check my-1 d-flex">
+                                                    <input class="form-check d-flex-input" type="checkbox" value=""
+                                                        id="doesn-not-answer-questions">
+                                                    <label class="form-check d-flex-label" for="flexCheckDefault">
+                                                        Does not answer questions
+                                                    </label>
+                                                </div>
+                                                <div class="form-check my-1 d-flex">
+                                                    <input class="form-check d-flex-input" type="checkbox" value="" id="poor-grades">
+                                                    <label class="form-check d-flex-label" for="flexCheckDefault">
+                                                        Poor grades
+                                                    </label>
+                                                </div>
+                                                <div class="form-check my-1 d-flex">
+                                                    <input class="form-check d-flex-input" type="checkbox" value=""
+                                                        id="poor-concentration">
+                                                    <label class="form-check d-flex-label" for="flexCheckDefault">
+                                                        Poor concentration
+                                                    </label>
+                                                </div>
+                                                <div class="form-check my-1 d-flex">
+                                                    <input class="form-check d-flex-input" type="checkbox" value=""
+                                                        id="poor-performance">
+                                                    <label class="form-check d-flex-label" for="flexCheckDefault">
+                                                        Poor exam performance despite good efforts
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="custom-control custom-radio d-inline mx-3">
+                                                <input id="school-concerns-no" name="school-concerns" type="radio"
+                                                    class="custom-control-input" checked="" />
+                                                <label class="custom-control-label" for="credit">No</label>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>     
+                  </div>
+                </div>
+            </div> -->
+
+            <!-- Examination -->
+            <!-- <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#examination" aria-expanded="false" aria-controls="collapseThree">
+                        Examination
+                    </button>
+                  </h5>
+                </div>
+                <div id="examination" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                              
+                                <div class="container" style="margin-bottom:50px">
+                                    <table class="table table-borderless">
+                                        <tr>General</tr>
+                                        <tr>
+                                            <td>
+                                                <label for="weight">Weight</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="number" class="form-control" placeholder="in kgs" id="weight">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="height">Height</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="number" class="form-control" placeholder="in cms" id="height">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="head-circumference">Head circumference:</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="number" class="form-control" placeholder="in cms" id="head-circumference">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="skull-shape-details">Skull shape details</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="textarea" class="form-control" id="skull-shape-details"
+                                                        placeholder=""  />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="dysmorphism">Dysmorphism</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="dysmorphism-present" name="dysmorphism" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Present</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="dysmorphism-absent" name="dysmorphism" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Absent</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="textarea" class="form-control" id="dysmorphism" placeholder="If dysmorphia present give details"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="neurocutaneous-markers">Neurocutaneous markers</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="neurocutaneous-markers-yes" name="neurocutaneous-markers" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="neurocutaneous-markers-no" name="neurocutaneous-markers" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="textarea" class="form-control" id="neurocutaneous" placeholder="If yes give details"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="pallor">Pallor</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="pallor-yes" name="pallor" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="pallor-no" name="pallor" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="textarea" class="form-control" id="pallor-text" placeholder="If yes give details"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="organomegaly">Organomegaly</label>
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="organomegaly-yes" name="organomegaly" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="organomegaly-no" name="organomegaly" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="textarea" class="form-control" id="organomegaly-text" placeholder="If yes details"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="skin-exam">Skin exam</label>
+                                            </td>
+                                           
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="textarea" class="form-control" id="skin-exam-text" placeholder="Details"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="joints">Joints</label>
+                                            </td>
+                                            
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="textarea" class="form-control" id="joints-text" placeholder="Details"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>Neurology</tr>
+                                        <tr>
+                                            <td><label for="generalized wasting">Generalized wasting</label></td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="generalized-wasting-yes" name="generalized-wasting" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="generalized-wasting-no" name="generalized-wasting" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="textarea" class="form-control" id="generalized-wasting-text" placeholder="If yes details"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><label for="hypertrophy of muscles">Hypertrophy of muscles</label></td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="hypertrophy-of-muscles-yes" name="hypertrophy-of-muscles" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="hypertrophy-of-muscles-no" name="hypertrophy-of-muscles" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="textarea" class="form-control" id="hypertrophy-of-muscles-text" placeholder="Details"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><label for="muscle-tone">Muscle tone</label></td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="muscle-tone-normal" name="hypertrophy-of-muscles" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Normal</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="muscle-tone-abnormal" name="hypertrophy-of-muscles" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Abnormal</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="container1">
+                                                Abnormal tone pattern
+                                            </div>
+                                            <div class="container2">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="abnormal-tone-pattern-yes" name="abnormal-tone-pattern" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="abnormal-tone-pattern-no" name="abnormal-tone-pattern" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+                                            </div>
+                                            </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                               <div class="container d-flex">
+                                                <div class="container1">
+                                                    <label for="adductor-angle">Adductor angle</label>
+                                                </div>
+                                                <div class="container2">
+                                                    <div class="container d-flex">
+                                                        <input type="textarea" class="form-control" id="adductor-angle-text" placeholder="Details"  />
+                                                    </div>
+                                                </div>
+                                               </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                               <div class="container d-flex">
+                                                <div class="container1">
+                                                    <label for="popliteal angle">Popliteal angle</label>
+                                                </div>
+                                                <div class="container2">
+                                                    <div class="container d-flex">
+                                                        <input type="textarea" class="form-control" id="popliteal-angle-text" placeholder="Details"  />
+                                                    </div>
+                                                </div>
+                                               </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                               <div class="container d-flex">
+                                                <div class="container1">
+                                                    <label for="scarf-sign">Scarf sign</label>
+                                                </div>
+                                                <div class="container2">
+                                                    <div class="container d-flex">
+                                                        <input type="textarea" class="form-control" id="scarf-sign-text" placeholder="Details"  />
+                                                    </div>
+                                                </div>
+                                               </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                               <div class="container d-flex">
+                                                <div class="container1">
+                                                    <label for="neck-extensor-hypertonia">Neck extensor hypertonia</label>
+                                                </div>
+                                                <div class="container2">
+                                                    <div class="container d-flex">
+                                                        <input type="textarea" class="form-control" id="neck-extensor-hypertonia-text" placeholder="Details"  />
+                                                    </div>
+                                                </div>
+                                               </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                               <div class="container d-flex">
+                                                <div class="container1">
+                                                    <label for="back-hypotonia">Back hypotonia</label>
+                                                </div>
+                                                <div class="container2">
+                                                    <div class="container d-flex">
+                                                        <input type="textarea" class="form-control" id="back-hypotonia-text" placeholder="Details"  />
+                                                    </div>
+                                                </div>
+                                               </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                               <div class="container d-flex">
+                                                <div class="container1">
+                                                    <label for="limb-hypertonia">Limb hypertonia</label>
+                                                </div>
+                                                <div class="container2">
+                                                    <div class="container d-flex">
+                                                        <input type="textarea" class="form-control" id="limb-hypertonia-text" placeholder="Details"  />
+                                                    </div>
+                                                </div>
+                                               </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                               <div class="container d-flex">
+                                                <div class="container1">
+                                                    <label for="tonal-asymmetry">Tonal asymmetry</label>
+                                                </div>
+                                                <div class="container2">
+                                                    <div class="container d-flex">
+                                                        <input type="textarea" class="form-control" id="tonal-asymmetry-text" placeholder="Details"  />
+                                                    </div>
+                                                </div>
+                                               </div>
+                                        </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><label for="generalized-hypotnia">Generalized hypotnia</label></td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="generalized-hypotnia-yes" name="generalized-hypotnia" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="generalized-hypotnia-no" name="generalized-hypotnia" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="spasticity-lower-limbs">Spasticity lower limbs</label></td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="spasticity-lower-limbs-yes" name="generalized-hypotnia" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="spasticity-lower-limbs-no" name="generalized-hypotnia" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><label for="ankle-tightness">Ankle tightness</label></td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="ankle-tightness-yes" name="ankle-tightness" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="ankle-tightness-no" name="ankle-tightness" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><label for="dystonia">Dystonia</label></td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="dystonia-yes" name="dystonia" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">Yes</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio d-inline mx-3">
+                                                        <input id="dystonia-no" name="dystonia" type="radio" class="custom-control-input" checked="" />
+                                                        <label class="custom-control-label" for="credit">No</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div class="container d-flex">
+                                                    <input type="textarea" class="form-control" id="hypertrophy-of-muscles-text" placeholder="Details"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="muscle-power">Muscle power</label>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                  </div>
+                </div>
+            </div> -->
+
+           <!-- Evaluation -->  
+            <!-- <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#evaluation" aria-expanded="false" aria-controls="collapseThree">
+                        Evaluation
+                    </button>
+                  </h5>
+                </div>
+                <div id="evaluation" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                            
+                  </div>
+                </div>
+            </div> -->
+
+            <!-- Impression -->  
+            <!-- <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#impression" aria-expanded="false" aria-controls="collapseThree">
+                        Impression
+                    </button>
+                  </h5>
+                </div>
+                <div id="impression" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                           
+                  </div>
+                </div>
+            </div> -->
+
+            <!-- Plan -->  
+            <!-- <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#plan" aria-expanded="false" aria-controls="collapseThree">
+                        Plan
+                    </button>
+                  </h5>
+                </div>
+                <div id="plan" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                            
+                  </div>
+                </div>
+            </div> -->
+
+            <!-- Medical Treatment --> 
+            <!-- <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#medicalTreatment" aria-expanded="false" aria-controls="collapseThree">
+                        Medical Treatment
+                    </button>
+                  </h5>
+                </div>
+                <div id="medicalTreatment" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                             
+                  </div>
+                </div>
+            </div> -->
+
+            <div class="container d-inline-flex justify-content-center my-5">
+                <button class="btn btn-dark">Submit</button>
+            </div>
+          </div>
+    </form>
+</div>
+
+{%endblock body %}
