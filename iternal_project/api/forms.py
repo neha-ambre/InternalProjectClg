@@ -18,7 +18,7 @@ class DataForm(forms.Form):
     consanguinity=forms.ChoiceField(choices=[('present','Present'),('absesnt','Absent')],widget=forms.RadioSelect,initial='absent')
     perninantalEvents=forms.ChoiceField(choices=[('fullterm','Fullterm'),('preterm','Preterm')],widget=forms.RadioSelect,initial='preterm')
     term=forms.ChoiceField(choices=[('fullterm','Fullterm'),('preterm','Preterm')],widget=forms.RadioSelect,initial='preterm')
-    treatment=forms.ChoiceField(choices=[('treatment','Treatment'),('intubation','Intubation at birth'),('oxygenSupp','Required oxygen support'),('ventilator','Ventilator'),('surfactant','Required Surfactant'),('ionotropicSupp','Ionotropic Supprot')])
+    treatment=forms.ChoiceField(choices=[('treatment','Treatment'),('intubation','Intubation at birth'),('required oxygen support','Required oxygen support'),('ventilator','Ventilator'),('required surfactant','Required Surfactant'),('ionotropic Supprot','Ionotropic Supprot')])
     
     # class Meta:
     #     model=AutisticData

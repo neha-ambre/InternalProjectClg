@@ -16,7 +16,7 @@ input{
 .card-header {
     padding: .5rem 1rem;
     margin-bottom: 0;
-    background-color:none;
+    background-color:white;
     border-bottom: 1px solidrgba(0,0,0,.125);
 }
 
@@ -26,14 +26,18 @@ input{
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    /* background-color: none;
-    background-clip:none; */
     border: none;
-    /* border-radius: none; */
 }
 
 .btn-link {
     font-weight: bold;
     color: black;
     text-decoration: none;
+}
+
+.card-header {
+    padding: .5rem 1rem;
+    margin-bottom: 0;
+    background-color: white;
+    border-bottom: 1px solidrgba(0,0,0,.125);
 }

@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'iternal_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'internalprojectdb',
+        'NAME': 'internalprodb',
         'USER': 'root',
         'PASSWORD': 'neha@123',
         'HOST':'localhost',
