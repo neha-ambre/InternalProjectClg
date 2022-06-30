@@ -14,8 +14,10 @@ class AutisticData(models.Model):
     birthWeight=models.IntegerField(default=0)
     term=models.CharField(max_length=20,default='NA')
     delivery=models.CharField(max_length=20,default='NA')
+    deliveryDetails=models.CharField(max_length=1000,default='NA')
     consanguinity=models.CharField(max_length=20,default='NA')
     perninantalEvents=models.CharField(max_length=20,default='NA')
+    perninantalEventsDetails=models.CharField(max_length=1000,default='NA')
     treatment=models.CharField(max_length=20,default='NA')
     requiredNICUstay=models.CharField(max_length=20,default='NA')
     
