@@ -15,8 +15,10 @@ class DataForm(forms.Form):
     birthWeight=forms.IntegerField()
     term=forms.ChoiceField(choices=[('fullterm','Fullterm'),('preterm','Preterm')],widget=forms.RadioSelect,initial='preterm')
     delivery=forms.ChoiceField(choices=[('normal','Normal'),('lscs','LSCS'),('foreceps','Foreceps')],widget=forms.RadioSelect,initial='normal')
+    deliveryDetails=forms.CharField(max_length=1000)
     consanguinity=forms.ChoiceField(choices=[('present','Present'),('absesnt','Absent')],widget=forms.RadioSelect,initial='absent')
     perninantalEvents=forms.ChoiceField(choices=[('fullterm','Fullterm'),('preterm','Preterm')],widget=forms.RadioSelect,initial='preterm')
+    perninantalEventsDetails=forms.CharField(max_length=1000)
     term=forms.ChoiceField(choices=[('fullterm','Fullterm'),('preterm','Preterm')],widget=forms.RadioSelect,initial='preterm')
     treatment=forms.ChoiceField(choices=[('treatment','Treatment'),('intubation','Intubation at birth'),('required oxygen support','Required oxygen support'),('ventilator','Ventilator'),('required surfactant','Required Surfactant'),('ionotropic Supprot','Ionotropic Supprot')])
     
